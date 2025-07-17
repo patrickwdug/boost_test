@@ -1,0 +1,44 @@
+Below i added mozillas trusted certificates to my cacert.pm
+i also set up a peer key and peer crt 
+
+patrickduggan@Patricks-MacBook-Air boost_test % curl -o ~/certs/cacert.pem https://curl.se/ca/cacert.pem
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  217k  100  217k    0     0   441k      0 --:--:-- --:--:-- --:--:--  441k
+patrickduggan@Patricks-MacBook-Air boost_test % ls -l /Users/patrickduggan/certs/cacert.pem
+cat /Users/patrickduggan/certs/cacert.pem | head -n 5
+
+-rw-r--r--  1 patrickduggan  staff  222971  9 Jul 09:42 /Users/patrickduggan/certs/cacert.pem
+##
+## Bundle of CA Root Certificates
+##
+## Certificate data from Mozilla as of: Tue May 20 03:12:02 2025 GMT
+##
+
+
+peer key and peer cry:
+
+patrickduggan@Patricks-MacBook-Air boost_test % openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout peer.key -out peer.crt
+
+Generating a 2048 bit RSA private key
+.......................................+++++
+...................................................................................+++++
+writing new private key to 'peer.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) []:uk
+State or Province Name (full name) []:luton
+Locality Name (eg, city) []:luton
+Organization Name (eg, company) []:leonardo
+Organizational Unit Name (eg, section) []:
+Common Name (eg, fully qualified host name) []:peerhost
+Email Address []:
+patrickduggan@Patricks-MacBook-Air boost_test % 
+patrickduggan@Patricks-MacBook-Air boost_test % 
