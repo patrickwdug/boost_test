@@ -10,41 +10,10 @@
     //cant use 'using' as boost::asio::ssl is a namespace
     namespace ssl = boost::asio::ssl;
     using boost::asio::ip::tcp;
+    
 
 
 
-//lambda expressions everywhere! [captured variables](parameters){function body}
-//ive opted for explicit lambdas instead of [&]
-
-//pass by reference is very important for socket use. many variables which must be constantly updated
-
-//entire basis on socket communication logic is: run if not error code
-
-/*###############################################################
-SSL & Encryption
-
-boost/asio/ssl.hpp or openssl/ssl.h
-
-SSL - secure socket layer
-
-setting up peer certs:
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout peer.key -out peer.crt
-
-redo all sockets with SSL
-
-ssl::context ssl_context(ssl::context::sslv23);
-
-need to add ssl::context
-need to update all sockets to:
-boost::asio::ssl::stream<tcp::socket> socket(io_context, ssl_context);
-
-look into socket layering
---adding a ssl::stream wrapper to a socket
---this means lowest_layer() refers to the socket itself.(under the wrapper)
-
-add handshake after async connect and async accept
-
-*/
 
 //added feature for time stamp
 //doesn't have to be thread safe because its only called from one thread.
